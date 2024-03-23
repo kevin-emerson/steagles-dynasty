@@ -1,7 +1,7 @@
-// TODO add env var for steagles-api and replace localhost once deployed
+const baseUrl = import.meta.env.VITE_STEAGLES_API_BASE_URL
 
 export const getAuthUrl = () => {
-    fetch('http://localhost:3000/auth/url', {
+    fetch(`${baseUrl}/auth/url`, {
         method: 'GET',
     }).then(res => {
         return res.json();
@@ -12,7 +12,7 @@ export const getAuthUrl = () => {
 }
 
 export const getAccessToken = (code) => {
-    fetch(`http://localhost:3000/auth/token?code=${code}`, {
+    fetch(`${baseUrl}/auth/token?code=${code}`, {
         method: 'get',
     }).then(res => {
         return res.json();
