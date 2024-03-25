@@ -12,11 +12,17 @@ export const getAuthUrl = () => {
 }
 
 export const getAccessToken = async (code) => {
-    fetch(`${baseUrl}/auth/token?code=${code}`, {
+    return fetch(`${baseUrl}/auth/token?code=${code}`, {
         method: 'GET',
-    }).then(res => {
-        return res.json();
-    }).then(data => {
-        console.log(data);
-    });
+    })
+}
+
+// TODO create middleware to add auth headers to every call
+export const getTeams = async (token) => {
+    return fetch(`${baseUrl}/teams`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
 }

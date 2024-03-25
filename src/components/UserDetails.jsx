@@ -1,16 +1,38 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useAuth} from "../AuthContext";
+import {getTeams} from "../apis/YahooApi";
 
 export default function UserDetails() {
     const { authToken } = useAuth();
+    const [teamData, setTeamData] = useState([]);
 
     useEffect( () => {
-        console.log('user details auth token: ' + authToken)
-    }, [authToken])
+        getTeams(authToken).then(res => {
+            res.json().then(data => {
+                console.log('teamdata: ' + data)
+                setTeamData(data)
+            })
+        })
+    }, [])
+
+    const renderTeamData = () => {
+        let teamsHtml = []
+        teamData.forEach(team => {
+            teamsHtml.push(
+                <div key={`team:${team.leagueId}`}>
+                    <p key={`league:${team.leagueId}`}>League Id: {team.leagueId}</p>
+                    <p key={`name:${team.leagueId}`}>Team Name: {team.name}</p>
+                    <img key={`image:${team.leagueId}`} src={team.imageUrl} />
+                </div>
+            )
+        })
+        return teamsHtml;
+    }
 
     return(
-        <p>
-            auth token: {authToken}
-        </p>
+        <div>
+            <p>TEAMS</p>
+            {renderTeamData()}
+        </div>
     )
 }
