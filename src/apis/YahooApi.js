@@ -11,9 +11,9 @@ export const getAuthUrl = () => {
     });
 }
 
-export const getAccessToken = (code) => {
+export const getAccessToken = async (code) => {
     fetch(`${baseUrl}/auth/token?code=${code}`, {
-        method: 'get',
+        method: 'GET',
     }).then(res => {
         return res.json();
     }).then(data => {

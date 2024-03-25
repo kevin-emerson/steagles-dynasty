@@ -1,20 +1,33 @@
-import React, {useEffect, useState} from "react";
-import {getAccessToken, getAuthUrl} from "../apis/YahooApi";
+import React, {useContext, useEffect, useState} from "react";
+import {getAuthUrl} from "../apis/YahooApi";
 import {useSearchParams} from "react-router-dom";
+import {useAuth} from "../AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
     const [queryParameters] = useSearchParams()
     const [authCode, setAuthCode] = useState('');
+    const { authToken, setAuthToken } = useAuth();
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        // TODO if accessToken empty or invalid, get code from query param
-        //  (if code is empty, auth button will be displayed and they will be redirected back here once they auth)
-        //   then get token using code + call 2
-
+    useEffect( () => {
+        console.log('authtoken useeffect: ' + authToken)
         if (authCode === '') {
             setAuthCode(queryParameters.get("code") ?? '');
         }
     }, [])
+
+    const handleButtonClick = async () => {
+        await fetch(`http://localhost:3000/auth/token?code=${authCode}`, {
+            method: 'GET',
+            }).then(res => {
+                return res.json();
+            }).then(data => {
+                console.log(data);
+                setAuthToken(data.access_token)
+                navigate('/user-details')
+            })
+    }
 
     return(
         <>
@@ -22,8 +35,8 @@ export default function Home() {
                 <div onClick={() => getAuthUrl()}>
                     Login with Yahoo
                 </div> :
-                <div onClick={() => getAccessToken(authCode)}>
-                    <p>{authCode}</p>
+                <div onClick={handleButtonClick}>
+                    <p>access token: {authToken}</p>
                 </div>
             }
         </>
