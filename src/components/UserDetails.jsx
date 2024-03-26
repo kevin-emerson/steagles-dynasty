@@ -9,7 +9,6 @@ export default function UserDetails() {
     useEffect( () => {
         getTeams(authToken).then(res => {
             res.json().then(data => {
-                console.log('teamdata: ' + data)
                 setTeamData(data)
             })
         })

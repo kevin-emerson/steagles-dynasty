@@ -6,7 +6,6 @@ export const getAuthUrl = () => {
     }).then(res => {
         return res.json();
     }).then(data => {
-        console.log(data.url);
         window.location = data.url
     });
 }
