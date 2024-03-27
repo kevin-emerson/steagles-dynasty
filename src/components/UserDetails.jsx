@@ -20,7 +20,7 @@ export default function UserDetails() {
         let teamsHtml = []
         teamData.forEach(team => {
             teamsHtml.push(
-                <div key={`team:${team.leagueId}`} onClick={() => navigate('/league-details')}>
+                <div key={`team:${team.leagueId}`} onClick={() => navigate(`/league-details/${team.leagueId}`)}>
                     <p key={`league:${team.leagueId}`}>League Id: {team.leagueId}</p>
                     <p key={`name:${team.leagueId}`}>Team Name: {team.name}</p>
                     <img key={`image:${team.leagueId}`} src={team.imageUrl} />

@@ -1,15 +1,17 @@
 import {useAuth} from "../AuthContext";
 import React, {useEffect, useState} from "react";
 import {getFreeAgents} from "../apis/YahooApi";
+import {useParams} from "react-router";
 
 export default function FreeAgents() {
     const { authToken } = useAuth();
+    const { leagueId } = useParams();
     const [freeAgents, setFreeAgents] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect( () => {
         setIsLoading(true)
-        getFreeAgents(authToken).then(res => {
+        getFreeAgents(authToken, leagueId).then(res => {
             console.log('1')
             res.json().then(data => {
                 setFreeAgents(data)
@@ -18,6 +20,7 @@ export default function FreeAgents() {
         })
     }, [])
 
+    // TODO add to table and make searchable/paginate
     const renderFreeAgents = () => {
         let freeAgentsHtml = []
         console.log('2')
@@ -34,6 +37,7 @@ export default function FreeAgents() {
         return freeAgentsHtml;
     }
 
+    // TODO clean up and style
     function jsonToCsv(jsonData) {
         let csv = '';
         // Get the headers
@@ -47,6 +51,7 @@ export default function FreeAgents() {
         return csv;
     }
 
+    // TODO clean up and style
     const downloadCsv = () => {
         let csvData = jsonToCsv(freeAgents); // Add .items.data
         // Create a CSV file and allow the user to download it
