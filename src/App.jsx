@@ -4,6 +4,7 @@ import './App.css';
 import Home from "./components/Home";
 import UserDetails from "./components/UserDetails";
 import {AuthProvider} from "./AuthContext";
+import FreeAgents from "./components/FreeAgents";
 
 function App() {
     return (
@@ -11,7 +12,8 @@ function App() {
             <AuthProvider>
                 <Routes>/
                     <Route path="/" element={<Home   />} />
-                    <Route path="/user-details" element={<UserDetails   />} />
+                    <Route path="/user-details" element={<UserDetails />} />
+                    <Route path="/league-details" element={<FreeAgents />} />
                 </Routes>
             </AuthProvider>
         </BrowserRouter>
