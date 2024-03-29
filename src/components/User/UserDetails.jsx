@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
-import {useAuth} from "../AuthContext";
-import {getTeams} from "../apis/YahooApi";
+import {useAuth} from "../../AuthContext";
+import {getTeams} from "../../apis/YahooApi";
 import {useNavigate} from "react-router-dom";
+import './UserDetails.scss'
 
 export default function UserDetails() {
     const { authToken } = useAuth();
@@ -20,9 +21,9 @@ export default function UserDetails() {
         let teamsHtml = []
         teamData.forEach(team => {
             teamsHtml.push(
-                <div key={`team:${team.leagueId}`} onClick={() => navigate(`/league-details/${team.leagueId}`)}>
+                <div className="teamContainer" key={`team:${team.leagueId}`} onClick={() => navigate(`/league-details/${team.leagueId}`)}>
                     <p key={`league:${team.leagueId}`}>League Id: {team.leagueId}</p>
-                    <p key={`name:${team.leagueId}`}>Team Name: {team.name}</p>
+                    <p key={`name:${team.leagueId}`}>Team: {team.name}</p>
                     <img key={`image:${team.leagueId}`} src={team.imageUrl} />
                 </div>
             )
@@ -31,9 +32,11 @@ export default function UserDetails() {
     }
 
     return(
-        <div>
+        <div className="container">
             <p>TEAMS</p>
-            {renderTeamData()}
+            <div className="allTeamsContainer">
+                {renderTeamData()}
+            </div>
         </div>
     )
 }

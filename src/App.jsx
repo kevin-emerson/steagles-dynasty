@@ -2,9 +2,9 @@ import React from 'react';
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import './App.css';
 import Home from "./components/Home";
-import UserDetails from "./components/UserDetails";
+import UserDetails from "./components/User/UserDetails";
 import {AuthProvider} from "./AuthContext";
-import FreeAgents from "./components/FreeAgents";
+import FreeAgents from "./components/League/FreeAgents";
 
 function App() {
     return (

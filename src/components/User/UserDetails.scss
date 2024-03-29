@@ -1,0 +1,14 @@
+.container {
+  text-align: center;
+  margin: auto;
+}
+
+.allTeamsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.teamContainer {
+  margin: 0 2rem;
+}

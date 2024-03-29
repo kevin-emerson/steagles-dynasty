@@ -1,8 +1,10 @@
-import {useAuth} from "../AuthContext";
+import {useAuth} from "../../AuthContext";
 import React, {useEffect, useState} from "react";
-import {getFreeAgents} from "../apis/YahooApi";
+import {getFreeAgents} from "../../apis/YahooApi";
 import {useParams} from "react-router";
 
+
+// TODO EXTRACT STYLING -> NO INLINE
 export default function FreeAgents() {
     const { authToken } = useAuth();
     const { leagueId } = useParams();
@@ -12,7 +14,6 @@ export default function FreeAgents() {
     useEffect( () => {
         setIsLoading(true)
         getFreeAgents(authToken, leagueId).then(res => {
-            console.log('1')
             res.json().then(data => {
                 setFreeAgents(data)
                 setIsLoading(false)
@@ -23,15 +24,20 @@ export default function FreeAgents() {
     // TODO add to table and make searchable/paginate
     const renderFreeAgents = () => {
         let freeAgentsHtml = []
-        console.log('2')
         freeAgents.slice(0,5).forEach(player => {
             freeAgentsHtml.push(
-                <p key={`player:${player.name}`}>
-                    {player.name}
-                    {/*<p key={`league:${team.leagueId}`}>League Id: {team.leagueId}</p>*/}
-                    {/*<p key={`name:${team.leagueId}`}>Team Name: {team.name}</p>*/}
-                    {/*<img key={`image:${team.leagueId}`} src={team.imageUrl} />*/}
-                </p>
+                <div key={`player:${player.player_id}`}
+                     style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                    }}
+                >
+                    <p key={`name:${player.primary_position}`}>{player.primary_position}</p>
+                    <p key={`name:${player.full}`}>{player.full}</p>
+                    <p key={`team:${player.team}`}>{player.team}</p>
+                    <img key={`image:${player.player_image}`} src={player.player_image} />
+                </div>
             )
         })
         return freeAgentsHtml;
@@ -65,13 +71,15 @@ export default function FreeAgents() {
     }
 
     return(
-        <div>
+        <div style={{textAlign: 'center', maxWidth: '50rem', margin: 'auto'}}>
             { isLoading ? <p>Loading...</p> :
-                <>
+                <div>
                     <p>FREE AGENTS</p>
                     {renderFreeAgents()}
-                    <div style={{border: 'solid'}} onClick={downloadCsv}> Download all free agents</div>
-                </>
+                    <div style={{display: 'flex', justifyContent: 'center', padding: '1rem', margin: '1rem 0px'}}>
+                        <div style={{textAlign: 'center', border: 'solid', width: '20rem'}} onClick={downloadCsv}> Download all free agents</div>
+                    </div>
+                </div>
             }
         </div>
     )
