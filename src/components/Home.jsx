@@ -16,7 +16,6 @@ export default function Home() {
         } else {
             getAccessToken(authCode).then(res => {
                 res.json().then(data => {
-                    console.log('data: '  + data)
                     setAuthToken(data.access_token)
                     navigate('/user-details')
                 })

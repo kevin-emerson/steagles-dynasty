@@ -4,7 +4,7 @@ import './App.css';
 import Home from "./components/Home";
 import UserDetails from "./components/User/UserDetails";
 import {AuthProvider} from "./AuthContext";
-import FreeAgents from "./components/League/FreeAgents";
+import LeaguePage from "./components/League/LeaguePage";
 
 function App() {
     return (
@@ -13,7 +13,7 @@ function App() {
                 <Routes>/
                     <Route path="/" element={<Home   />} />
                     <Route path="/user-details" element={<UserDetails />} />
-                    <Route path="/league-details/:leagueId" element={<FreeAgents />} />
+                    <Route path="/league-details/:leagueId" element={<LeaguePage />} />
                 </Routes>
             </AuthProvider>
         </BrowserRouter>

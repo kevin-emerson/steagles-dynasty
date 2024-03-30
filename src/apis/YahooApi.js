@@ -17,8 +17,28 @@ export const getAccessToken = async (code) => {
 }
 
 // TODO create middleware to add auth headers to every call
-export const getTeams = async (token) => {
-    return fetch(`${baseUrl}/teams`, {
+export const getUsersTeams = async (token) => {
+    return fetch(`${baseUrl}/user/teams`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+}
+
+// TODO create middleware to add auth headers to every call
+export const getLeagueData = async (token, league) => {
+    return fetch(`${baseUrl}/league?leagueId=${league}`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+}
+
+// TODO create middleware to add auth headers to every call
+export const getLeagueTeams = async (token, league, numTeams) => {
+    return fetch(`${baseUrl}/league/teams?leagueId=${league}&numTeams=${numTeams}`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${token}`

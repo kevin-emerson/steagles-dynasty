@@ -1,0 +1,38 @@
+.leagueDetailsContainer {
+  text-align: center;
+  margin: auto 5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.leagueContainer {
+  margin-right: 5rem;
+}
+
+.teamsContainer {
+
+}
+
+.leagueTeamContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.teamLogo {
+  max-height: 3rem;
+  max-width: 3rem;
+  margin-right: 1rem;
+}
+
+.rosterButtonContainer {
+  align-self: center;
+  margin-right: 1rem;
+}
+
+.rosterButton {
+  text-align: center;
+  border: solid;
+  width: 10rem;
+}
