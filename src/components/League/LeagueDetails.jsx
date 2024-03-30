@@ -60,6 +60,13 @@ export default function LeagueDetails({leagueId}) {
                         <p>TEAMS</p>
                         {renderTeamDetails()}
                     </div>
+                    <div className="rosterButtonContainer">
+                        <div className="rosterButton" onClick={() => {
+                            for (let i=0; i < teamData.length; i++) {
+                                downloadCsv(teamData[i].players, `${teamData[i].teamName}_Roster`)
+                            }
+                        }}>Download All Rosters</div>
+                    </div>
                 </>
             }
         </div>
