@@ -13,7 +13,7 @@ function App() {
                 <Routes>/
                     <Route path="/" element={<Home   />} />
                     <Route path="/user-details" element={<UserDetails />} />
-                    <Route path="/league-details/:leagueId" element={<LeaguePage />} />
+                    <Route path="/league-details/:gameKey/:leagueId" element={<LeaguePage />} />
                 </Routes>
             </AuthProvider>
         </BrowserRouter>

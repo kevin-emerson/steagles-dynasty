@@ -5,12 +5,12 @@ import LeagueDetails from "./LeagueDetails";
 
 
 export default function LeaguePage() {
-    const { leagueId } = useParams();
+    const { gameKey, leagueId } = useParams();
 
     return(
         <div>
-            <LeagueDetails leagueId={leagueId} />
-            <FreeAgents leagueId={leagueId} />
+            <LeagueDetails leagueId={leagueId} gameKey={gameKey} />
+            <FreeAgents leagueId={leagueId} gameKey={gameKey} />
         </div>
     )
 }

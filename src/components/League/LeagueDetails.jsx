@@ -4,7 +4,7 @@ import {getLeagueData, getLeagueTeams} from "../../apis/YahooApi";
 import './LeagueDetails.scss'
 import {downloadCsv} from "../../utility/csvHelper";
 
-export default function LeagueDetails({leagueId}) {
+export default function LeagueDetails({leagueId, gameKey}) {
     const { authToken } = useAuth();
     const [leagueData, setLeagueData] = useState(null);
     const [teamData, setTeamData] = useState([]);
@@ -12,9 +12,9 @@ export default function LeagueDetails({leagueId}) {
 
     useEffect( () => {
         setIsLoading(true)
-        getLeagueData(authToken, leagueId).then(res => {
+        getLeagueData(authToken, leagueId, gameKey).then(res => {
             res.json().then(leagueData => {
-                getLeagueTeams(authToken, leagueId, leagueData.numTeams).then(res => {
+                getLeagueTeams(authToken, leagueId, gameKey, leagueData.numTeams).then(res => {
                     res.json().then(data => {
                         setLeagueData(leagueData)
                         setTeamData(data)
@@ -56,7 +56,7 @@ export default function LeagueDetails({leagueId}) {
             {isLoading ? <p>Loading League Details...</p> :
                 <>
                     {renderLeagueDetails()}
-                    <div className="teamsContainer">
+                    <div>
                         <p>TEAMS</p>
                         {renderTeamDetails()}
                     </div>

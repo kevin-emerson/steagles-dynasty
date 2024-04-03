@@ -4,14 +4,14 @@ import {getFreeAgents} from "../../apis/YahooApi";
 import './FreeAgents.scss'
 import {downloadCsv} from "../../utility/csvHelper";
 
-export default function FreeAgents({leagueId}) {
+export default function FreeAgents({leagueId, gameKey}) {
     const { authToken } = useAuth();
     const [freeAgents, setFreeAgents] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect( () => {
         setIsLoading(true)
-        getFreeAgents(authToken, leagueId).then(res => {
+        getFreeAgents(authToken, leagueId, gameKey).then(res => {
             res.json().then(data => {
                 setFreeAgents(data)
                 setIsLoading(false)

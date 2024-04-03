@@ -3,7 +3,17 @@
   margin: auto;
 }
 
+.seasonContainer {
+  width: 100%;
+}
+
 .allTeamsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.teamsContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -11,4 +21,9 @@
 
 .teamContainer {
   margin: 0 2rem;
+}
+
+.userTeamLogo {
+  max-height: 10rem;
+  max-width: 10rem;
 }
