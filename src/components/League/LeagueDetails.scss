@@ -1,6 +1,6 @@
 .leagueDetailsContainer {
   text-align: center;
-  margin: auto 5rem;
+  margin: auto 1rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -22,13 +22,17 @@
   margin-right: 1rem;
 }
 
-.rosterButtonContainer {
+.leagueTeamsHeader {
   align-self: center;
   margin-right: 1rem;
+  display: flex;
+  flex-direction: row;
 }
 
-.rosterButton {
+.downloadTeamsButton {
   text-align: center;
+  align-self: center;
   border: solid;
-  width: 10rem;
+  padding: 0 2rem;
+  margin-left: 1rem;
 }

@@ -2,7 +2,7 @@ import {useAuth} from "../../AuthContext";
 import React, {useEffect, useState} from "react";
 import {getLeagueData, getLeagueTeams} from "../../apis/YahooApi";
 import './LeagueDetails.scss'
-import {downloadCsv} from "../../utility/csvHelper";
+import {downloadCsvAllRosters} from "../../utility/csvHelper";
 
 export default function LeagueDetails({leagueId, gameKey}) {
     const { authToken } = useAuth();
@@ -40,9 +40,6 @@ export default function LeagueDetails({leagueId, gameKey}) {
         teamData.forEach(team => {
             teamsHtml.push(
                 <div className="leagueTeamContainer" key={`team${team.teamId}`}>
-                    <div className="rosterButtonContainer">
-                        <div className="rosterButton" onClick={() => downloadCsv(team.players, `${team.teamName}_Roster`)}>Download Roster</div>
-                    </div>
                     <img src={team.teamLogo} className="teamLogo" />
                     <p>{team.teamName}</p>
                 </div>
@@ -57,15 +54,13 @@ export default function LeagueDetails({leagueId, gameKey}) {
                 <>
                     {renderLeagueDetails()}
                     <div>
-                        <p>TEAMS</p>
+                        <div className="leagueTeamsHeader">
+                            <p>TEAMS</p>
+                            <div className="downloadTeamsButton" onClick={() => {
+                                downloadCsvAllRosters(teamData, `${leagueData.name}_Rosters`)
+                            }}>Download Rosters</div>
+                        </div>
                         {renderTeamDetails()}
-                    </div>
-                    <div className="rosterButtonContainer">
-                        <div className="rosterButton" onClick={() => {
-                            for (let i=0; i < teamData.length; i++) {
-                                downloadCsv(teamData[i].players, `${teamData[i].teamName}_Roster`)
-                            }
-                        }}>Download All Rosters</div>
                     </div>
                 </>
             }

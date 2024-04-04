@@ -25,10 +25,10 @@ export default function FreeAgents({leagueId, gameKey}) {
         freeAgents.slice(0,5).forEach(player => {
             freeAgentsHtml.push(
                 <div className="playerContainer" key={`player:${player?.player_id}`}>
+                    <img key={`image:${player?.player_image}`} src={player?.player_image} />
                     <p key={`name:${player?.primary_position}`}>{player?.primary_position}</p>
                     <p key={`name:${player?.full}`}>{player?.full}</p>
                     <p key={`team:${player?.team}`}>{player?.team}</p>
-                    <img key={`image:${player?.player_image}`} src={player?.player_image} />
                 </div>
             )
         })
@@ -39,11 +39,11 @@ export default function FreeAgents({leagueId, gameKey}) {
         <div className="freeAgentsContainer">
             { isLoading ? <p>Loading Free Agents...</p> :
                 <div>
-                    <p>FREE AGENTS</p>
-                    {renderFreeAgents()}
-                    <div className="faButtonContainer">
-                        <div className="faButton" onClick={() => downloadCsv(freeAgents, `Free_Agents_${leagueId}`)}> Download all free agents</div>
+                    <div className="freeAgentsHeader">
+                        <p>FREE AGENTS</p>
+                        <div className="downloadFreeAgentsButton" onClick={() => downloadCsv(freeAgents, `${leagueId}_Free_Agents`)}> Download Free Agents</div>
                     </div>
+                    {renderFreeAgents()}
                 </div>
             }
         </div>
