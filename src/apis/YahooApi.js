@@ -55,3 +55,7 @@ export const getFreeAgents = async (token, leagueId, gameKey) => {
         }
     })
 }
+
+// export const getMockData = async () => {
+//     return fetch(``)
+// }

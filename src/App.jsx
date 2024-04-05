@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import UserDetails from "./components/User/UserDetails";
 import {AuthProvider} from "./AuthContext";
 import LeaguePage from "./components/League/LeaguePage";
+import TrustTheProcess from './components/PlayerPoc/TrustTheProcess';
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                     <Route path="/" element={<Home   />} />
                     <Route path="/user-details" element={<UserDetails />} />
                     <Route path="/league-details/:gameKey/:leagueId" element={<LeaguePage />} />
+                    <Route path="/trust-the-process" element={<TrustTheProcess  />} />
                 </Routes>
             </AuthProvider>
         </BrowserRouter>
