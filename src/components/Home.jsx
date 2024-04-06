@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {getAccessToken, getAuthUrl} from "../apis/YahooApi";
 import {useSearchParams} from "react-router-dom";
 import {useAuth} from "../AuthContext";
 import { useNavigate } from "react-router-dom";
+import './Home.scss'
+import {getAccessToken, getAuthUrl} from "../apis/AuthApi";
 
 export default function Home() {
     const [queryParameters] = useSearchParams()
@@ -24,11 +25,11 @@ export default function Home() {
     }, [authCode])
 
     return(
-        <>
-            <div onClick={() => getAuthUrl()}>
+        <div className="container">
+            <button onClick={() => getAuthUrl()}>
                 Login with Yahoo
-            </div>
-        </>
+            </button>
+        </div>
     )
 }
 

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useAuth} from "../../AuthContext";
-import {getUsersTeams} from "../../apis/YahooApi";
+import {getUsersTeams} from "../../apis/FantasyApi";
 import {useNavigate} from "react-router-dom";
 import './UserDetails.scss'
 
@@ -10,10 +10,8 @@ export default function UserDetails() {
     const [seasonsData, setSeasonsData] = useState([]);
 
     useEffect( () => {
-        getUsersTeams(authToken).then(res => {
-            res.json().then(data => {
-                setSeasonsData(data)
-            })
+        getUsersTeams(authToken).then(data => {
+            setSeasonsData(data)
         })
     }, [])
 
@@ -31,6 +29,7 @@ export default function UserDetails() {
     }
 
     const renderSeasonData = () => {
+        if (seasonsData.length < 1) return <p>We don't see any teams for you at the moment.</p>
         const seasonsHtml = [];
         seasonsData.forEach(season => {
             seasonsHtml.push(
@@ -46,7 +45,7 @@ export default function UserDetails() {
     }
 
     return(
-        <div className="container">
+        <div className="userDetailsContainer">
             <p>TEAMS</p>
             <div className="allTeamsContainer">
                 {renderSeasonData()}

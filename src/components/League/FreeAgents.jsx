@@ -1,6 +1,6 @@
 import {useAuth} from "../../AuthContext";
 import React, {useEffect, useState} from "react";
-import {getFreeAgents} from "../../apis/YahooApi";
+import {getFreeAgents} from "../../apis/FantasyApi";
 import './FreeAgents.scss'
 import {downloadCsv} from "../../utility/csvHelper";
 
@@ -11,11 +11,9 @@ export default function FreeAgents({leagueId, gameKey}) {
 
     useEffect( () => {
         setIsLoading(true)
-        getFreeAgents(authToken, leagueId, gameKey).then(res => {
-            res.json().then(data => {
-                setFreeAgents(data)
-                setIsLoading(false)
-            })
+        getFreeAgents(authToken, leagueId, gameKey).then(data => {
+            setFreeAgents(data)
+            setIsLoading(false)
         })
     }, [])
 

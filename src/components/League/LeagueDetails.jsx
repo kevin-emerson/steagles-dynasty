@@ -1,6 +1,6 @@
 import {useAuth} from "../../AuthContext";
 import React, {useEffect, useState} from "react";
-import {getLeagueData, getLeagueTeams} from "../../apis/YahooApi";
+import {getLeagueData, getLeagueTeams} from "../../apis/FantasyApi";
 import './LeagueDetails.scss'
 import {downloadCsvAllRosters} from "../../utility/csvHelper";
 
@@ -12,17 +12,13 @@ export default function LeagueDetails({leagueId, gameKey}) {
 
     useEffect( () => {
         setIsLoading(true)
-        getLeagueData(authToken, leagueId, gameKey).then(res => {
-            res.json().then(leagueData => {
-                getLeagueTeams(authToken, leagueId, gameKey, leagueData.numTeams).then(res => {
-                    res.json().then(data => {
+        getLeagueData(authToken, leagueId, gameKey).then(leagueData => {
+                getLeagueTeams(authToken, leagueId, gameKey, leagueData.numTeams).then(data => {
                         setLeagueData(leagueData)
                         setTeamData(data)
                         setIsLoading(false)
                     })
                 })
-            })
-        })
     }, [])
 
     const renderLeagueDetails = () => {
