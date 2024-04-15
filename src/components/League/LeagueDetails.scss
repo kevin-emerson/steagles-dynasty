@@ -1,38 +1,54 @@
 .leagueDetailsContainer {
   text-align: center;
-  margin: auto 1rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+
+  .leagueContainer {
+    margin-right: 5rem;
+  }
+
+  .leagueTeamsHeader {
+    align-self: center;
+    margin-right: 1rem;
+    display: flex;
+    flex-direction: row;
+
+    .downloadTeamsButton {
+      text-align: center;
+      align-self: center;
+      border: solid;
+      padding: 0 2rem;
+      margin-left: 1rem;
+    }
+  }
+
+  .leagueTeamContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 auto 1rem;
+
+    .teamLogo {
+      max-height: 3rem;
+      max-width: 3rem;
+      margin-right: 1rem;
+    }
+
+    .namesContainer {
+      margin: 0;
+      text-align: left;
+
+      .fantasyTeamName {
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .managerName {
+        font-style: italic;
+        margin: 0;
+      }
+    }
+  }
 }
 
-.leagueContainer {
-  margin-right: 5rem;
-}
-
-.leagueTeamContainer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.teamLogo {
-  max-height: 3rem;
-  max-width: 3rem;
-  margin-right: 1rem;
-}
-
-.leagueTeamsHeader {
-  align-self: center;
-  margin-right: 1rem;
-  display: flex;
-  flex-direction: row;
-}
-
-.downloadTeamsButton {
-  text-align: center;
-  align-self: center;
-  border: solid;
-  padding: 0 2rem;
-  margin-left: 1rem;
-}

@@ -37,7 +37,10 @@ export default function LeagueDetails({leagueId, gameKey}) {
             teamsHtml.push(
                 <div className="leagueTeamContainer" key={`team${team.teamId}`}>
                     <img src={team.teamLogo} className="teamLogo" />
-                    <p>{team.teamName}</p>
+                    <div className="namesContainer">
+                        <p className="fantasyTeamName">{team.teamName}</p>
+                        <p className="managerName">{team.managerName}</p>
+                    </div>
                 </div>
             )
         })
