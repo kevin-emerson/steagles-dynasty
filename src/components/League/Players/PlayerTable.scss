@@ -1,0 +1,44 @@
+//.playerContainer {
+//  display: flex;
+//  flex-Direction: row;
+//  justify-content: space-between;
+//}
+
+
+
+.pager {
+    display: flex;
+
+    .pagerButtons {
+        width: 50%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 2px 0;
+
+        .dropdown-toggle {
+            border: 1px solid #ddd;
+            padding-right: 20px;
+            padding-left: 20px;
+        }
+
+        > * {
+            margin: 3px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #f0ad4e;
+            color: white;
+            border: none;
+            border-radius: 3px;
+        }
+
+        .pagerCounts {
+            width: 50%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+    }
+}
