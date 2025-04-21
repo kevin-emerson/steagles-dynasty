@@ -2,7 +2,7 @@ import {useAuth} from "../../AuthContext";
 import React, {useEffect, useState} from "react";
 import {getFreeAgents} from "../../apis/FantasyApi";
 import './FreeAgents.scss'
-import {downloadCsv} from "../../utility/csvHelper";
+import {downloadCsvFromJson} from "../../utility/csvHelper";
 
 export default function FreeAgents({leagueId, gameKey}) {
     const { authToken } = useAuth();
@@ -39,7 +39,7 @@ export default function FreeAgents({leagueId, gameKey}) {
                 <div>
                     <div className="freeAgentsHeader">
                         <p>FREE AGENTS</p>
-                        <div className="downloadFreeAgentsButton" onClick={() => downloadCsv(freeAgents, `${leagueId}_Free_Agents`)}> Download Free Agents</div>
+                        <div className="downloadFreeAgentsButton" onClick={() => downloadCsvFromJson(freeAgents, `${leagueId}_Free_Agents`)}> Download Free Agents</div>
                     </div>
                     {renderFreeAgents()}
                 </div>

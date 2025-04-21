@@ -9,7 +9,7 @@ export function jsonToCsv(jsonData) {
     return csv;
 }
 
-export const downloadCsv = (data, filename) => {
+export const downloadCsvFromJson = (data, filename) => {
     let csvData = jsonToCsv(data);
     let blob = new Blob([csvData], { type: 'text/csv' });
     let url = window.URL.createObjectURL(blob);
@@ -36,5 +36,5 @@ const flattenRosters = (rosters) => {
 
 export const downloadCsvAllRosters = (data, filename) => {
     const allRosterData = flattenRosters(data)
-    downloadCsv(allRosterData, filename)
+    downloadCsvFromJson(allRosterData, filename)
 }

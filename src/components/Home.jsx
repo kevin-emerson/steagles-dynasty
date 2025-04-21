@@ -4,6 +4,7 @@ import {useAuth} from "../AuthContext";
 import { useNavigate } from "react-router-dom";
 import './Home.scss'
 import {getAccessToken, getAuthUrl} from "../apis/AuthApi";
+import ProjectionHub from "./ProjectionHub";
 
 export default function Home() {
     const [queryParameters] = useSearchParams()
@@ -26,9 +27,13 @@ export default function Home() {
 
     return(
         <div className="container">
-            <button onClick={() => getAuthUrl()}>
-                Login with Yahoo
-            </button>
+            <ProjectionHub />
+            <div>
+                <p>Or view your old fantasy teams</p>
+                <button onClick={() => getAuthUrl()}>
+                    Login with Yahoo
+                </button>
+            </div>
         </div>
     )
 }
