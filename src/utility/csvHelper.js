@@ -21,13 +21,12 @@ export const downloadCsvFromJson = (data, filename) => {
 }
 
 export const downloadProjections = () => {
-    let blob = new Blob(["/public/2025_Projections.xlsx"]);
-    let url = window.URL.createObjectURL(blob);
-    let a = document.createElement('a');
-    a.href = url;
-    a.download = `2025_Projections.xlsx`;
-    document.body.appendChild(a);
-    a.click();
+    const url = "/public/2025_Projections.xlsx";
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "2025_Projections.xlsx";
+    document.body.appendChild(link);
+    link.click();
 }
 
 const flattenRosters = (rosters) => {
