@@ -21,12 +21,16 @@ export const downloadCsvFromJson = (data, filename) => {
 }
 
 export const downloadProjections = () => {
-    const url = "/public/2025_Projections.xlsx";
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "2025_Projections.xlsx";
-    document.body.appendChild(link);
-    link.click();
+    fetch("/public/2025_Projections.xlsx").then((response) => {
+        response.blob().then((blob) => {
+            const fileURL =
+                window.URL.createObjectURL(blob);
+            let alink = document.createElement("a");
+            alink.href = fileURL;
+            alink.download = "2025_Projections.xlsx";
+            alink.click();
+        });
+    });
 }
 
 const flattenRosters = (rosters) => {
