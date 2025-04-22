@@ -20,19 +20,6 @@ export const downloadCsvFromJson = (data, filename) => {
     a.click();
 }
 
-export const downloadProjections = () => {
-    fetch("/public/2025_Projections.xlsx").then((response) => {
-        response.blob().then((blob) => {
-            const fileURL =
-                window.URL.createObjectURL(blob);
-            let alink = document.createElement("a");
-            alink.href = fileURL;
-            alink.download = "2025_Projections.xlsx";
-            alink.click();
-        });
-    });
-}
-
 const flattenRosters = (rosters) => {
     const newArr = [];
     rosters.forEach(team => {
